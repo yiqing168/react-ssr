@@ -1,29 +1,29 @@
-var nodeExternals = require('webpack-node-externals');
-const path = require('path');
+var nodeExternals = require("webpack-node-externals");
+const path = require("path");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: path.resolve(__dirname, "../src/client/serverApp.js"),
-  target: 'node',
+  target: "node",
   node: {
     __filename: true,
     __dirname: true
   },
- //  externals: [nodeExternals()],
+  //  externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, "../dist"),
     filename: "server.js",
     libraryTarget: "commonjs2"
   },
-  // loader配置 
+  // loader配置
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        //排除node_modules 目录下的文件
+        use: "babel-loader",
+        // 排除node_modules 目录下的文件
         exclude: /node_modules/
       }
     ]
   }
-}
+};

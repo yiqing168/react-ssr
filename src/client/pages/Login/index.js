@@ -1,14 +1,11 @@
 import React from "react"
-import Header from "../../components/Header"
 
 /**
- * 首页
+ * 登录页
  */
 function Home(props) {
   return (
-    <div>
-      <Header />
-    </div>
+    <div>logineddss</div>
   )
 }
 export default Home;

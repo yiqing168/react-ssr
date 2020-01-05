@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader/root';
-import Home from "./pages/Home"
+import React, { Component } from "react";
+import { hot } from "react-hot-loader/root";
+import Home from "./pages/Home";
 
 class App extends Component {
   constructor(props) {
@@ -9,9 +9,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(55555555555555555555);
     return (
-      <div><Home /></div>
+      <div>
+        <Home />
+      </div>
     );
   }
 }
