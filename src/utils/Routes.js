@@ -1,13 +1,10 @@
 import React from "react";
-import { Route } from "react-router-dom"
-import Home from "../client/pages/Home"
-import Login from "../client/pages/Login"
+import { Route } from "react-router-dom";
+import Home from "../client/pages/Home";
+import Login from "../client/pages/Login";
 
-export default function () {
-  return (
-    <div>
-      <Route component={Home} path="/" exact={true}  ></Route>
-      <Route component={Login} path="/login" ></Route>
-    </div>
-  )
-}
+const routes = [
+  { path: "/login", component: Login, key: "login" },
+  { path: "/", component: Home, loadData: Home.loadData, key: "home" }
+];
+export default routes;

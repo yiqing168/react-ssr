@@ -1,16 +1,20 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createClientStore } from "../store";
-import Routes from "../utils/Routes";
+import routes from "../utils/Routes";
 import "./index.less";
 
 const clientStore = createClientStore();
 ReactDom.hydrate(
   <Provider store={clientStore}>
     <BrowserRouter>
-      <Routes />
+      <Switch>
+        {routes.map(route => (
+          <Route {...route} />
+        ))}
+      </Switch>
     </BrowserRouter>
   </Provider>,
   document.getElementById("app")

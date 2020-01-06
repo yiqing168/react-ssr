@@ -52,9 +52,11 @@ module.exports = function(app) {
   app.get("*", (req, res) => {
     getTemplate().then(template => {
       try {
-        const content = ReactDOMServer.renderToString(serverBundle(req));
-        console.log(content);
-        res.send(template.replace("<app></app>", content));
+        serverBundle(req).then(data => {
+          const content = ReactDOMServer.renderToString(data);
+          console.log(content);
+          res.send(template.replace("<app></app>", content));
+        });
       } catch (error) {
         console.log(error);
       }

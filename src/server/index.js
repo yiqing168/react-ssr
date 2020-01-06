@@ -1,9 +1,9 @@
 const express = require("express");
-
+const favicon = require("express-favicon");
 // 环境区分
-const ieDev = process.env.NODE_ENV === 'development';
+const ieDev = process.env.NODE_ENV === "development";
 const app = express();
-
+app.use(favicon(__dirname + "/public/favicon.png"));
 if (!ieDev) {
   const prodStatic = require("./utils/prod.static");
   prodStatic(app);
@@ -11,4 +11,4 @@ if (!ieDev) {
   const devStatic = require("./utils/dev.static");
   devStatic(app);
 }
-app.listen(3500, () => console.log('Example app listening on port 3500!'))
+app.listen(3500, () => console.log("Example app listening on port 3500!"));
