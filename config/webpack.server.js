@@ -15,6 +15,12 @@ module.exports = {
     filename: "server.js",
     libraryTarget: "commonjs2"
   },
+  resolve: {
+    alias: {
+      // 使用别名 简写
+      "@": path.resolve(__dirname, "../src")
+    }
+  },
   // loader配置
   module: {
     rules: [

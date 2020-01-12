@@ -10,8 +10,10 @@ const middleware = [thunkMiddleware];
  * 创建 store  根据开发环境启用插件 开发环境
  */
 export function createClientStore() {
+  let defaultState = window.context.state;
   return createStore(
     reducers,
+    defaultState,
     reduxDevtool()
       ? compose(
           applyMiddleware(...middleware),

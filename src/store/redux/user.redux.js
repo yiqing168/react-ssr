@@ -3,6 +3,23 @@ import { handleActions, createAction } from "redux-actions";
 const GET_USER_LIST = "@user/GET_USER_LIST";
 
 export const getUser = createAction(GET_USER_LIST);
+function get() {
+  return new Promise((resolve, reject) => {
+    resolve([
+      { name: "李想" },
+      {
+        name: "创造"
+      }
+    ]);
+  });
+}
+export function getUserData(params) {
+  return dispatch => {
+    return get().then(_d => {
+      dispatch(getUser(_d));
+    });
+  };
+}
 
 function getInitState() {
   return {

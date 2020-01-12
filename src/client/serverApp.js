@@ -15,18 +15,21 @@ export default function(req) {
         promises.push(list.route.loadData(serverStore));
       }
     });
-    Promise.all(branch).then(() => {
-      resolve(
-        <Provider store={serverStore}>
-          <StaticRouter location={req.path} context={{}}>
-            <Switch>
-              {routes.map(route => (
-                <Route {...route} />
-              ))}
-            </Switch>
-          </StaticRouter>
-        </Provider>
-      );
+    Promise.all(promises).then(() => {
+      resolve({
+        component: (
+          <Provider store={serverStore}>
+            <StaticRouter location={req.path} context={{}}>
+              <Switch>
+                {routes.map(route => (
+                  <Route {...route} />
+                ))}
+              </Switch>
+            </StaticRouter>
+          </Provider>
+        ),
+        store: serverStore
+      });
     });
   });
 }

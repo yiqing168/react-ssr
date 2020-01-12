@@ -52,10 +52,20 @@ module.exports = function(app) {
   app.get("*", (req, res) => {
     getTemplate().then(template => {
       try {
-        serverBundle(req).then(data => {
-          const content = ReactDOMServer.renderToString(data);
-          console.log(content);
-          res.send(template.replace("<app></app>", content));
+        serverBundle(req).then(({ component, store }) => {
+          const content = ReactDOMServer.renderToString(component);
+          template = template.replace("<app></app>", content);
+          template = template.replace(
+            "<store></store>",
+            `
+          <script>
+          window.context={
+            state:${JSON.stringify(store.getState())}
+          }
+          </script>
+          `
+          );
+          res.send(template);
         });
       } catch (error) {
         console.log(error);
